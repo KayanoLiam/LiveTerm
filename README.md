@@ -16,7 +16,7 @@ This is my personal terminal-styled website built with LiveTerm and Next.js. It'
 - **GitHub Integration**: Modified to link to my GitHub repositories
 
 ### Technical Changes
-- **AI Chat Integration**: Added AI chat functionality using Gemini API
+- **AI Chat Integration**: Added AI chat functionality using Google's Gemini API with environment variables for secure API key storage
 - **Removed Article System**: Simplified the website by removing the article/blog functionality
 - **Removed Sumfetch**: Simplified the codebase by removing the sumfetch component
 - **Enhanced Help Command**: Improved the help command with better categorization
@@ -33,8 +33,12 @@ Here are some of the key commands available on my website:
 - `resume` - View my detailed resume directly in the terminal
 - `repo` - Visit my GitHub repositories
 - `email` - Contact me via email
-- `ai [question]` - Chat with AI assistant
+
+#### AI Chat Commands
+- `ai [question]` - Chat with AI assistant powered by Google's Gemini API
 - `ai-clear` - Clear AI chat history
+
+The AI assistant can answer questions, provide information, and even write code examples. It remembers the conversation context, allowing for follow-up questions.
 
 ### Navigation
 
@@ -62,6 +66,10 @@ npm install
 # or
 yarn install
 
+# Set up environment variables
+cp .env.example .env
+# Edit .env and add your Gemini API key
+
 # Start the development server
 npm run dev
 # or
@@ -76,7 +84,7 @@ The website will be available at [http://localhost:3000](http://localhost:3000).
 
 The following files were modified from the original LiveTerm project:
 
-- `config.json` - Updated with my personal information and preferences and added Gemini API key
+- `config.json` - Updated with my personal information and preferences
 - `src/utils/bin/commands.ts` - Modified commands and added custom functionality
 - `src/utils/bin/index.ts` - Removed sumfetch component and article functionality, added AI chat
 - `public/manifest.json` - Updated website metadata
@@ -101,14 +109,23 @@ The following files were modified from the original LiveTerm project:
   },
   "email": "Kayano04@outlook.jp",
   "ps1_hostname": "kayano.fun",
-  "ps1_username": "visitor",
-  "geminiApiKey": "YOUR_GEMINI_API_KEY"
+  "ps1_username": "visitor"
 }
 ```
 
 ### Banner
 
 The ASCII banner was generated using [ASCII Banner Generator](https://manytools.org/hacker-tools/ascii-banner/) and customized to display my name.
+
+### Environment Variables
+
+This project uses environment variables to securely store API keys. The following variables are required:
+
+```
+NEXT_PUBLIC_GEMINI_API_KEY=your_gemini_api_key_here
+```
+
+You can get a Gemini API key from [Google AI Studio](https://aistudio.google.com/app/apikey).
 
 ## 🌐 Deployment on Vercel
 
