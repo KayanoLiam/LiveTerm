@@ -10,8 +10,8 @@ const hasApiKey = apiKey && apiKey.length > 0;
 // AI对话历史记录
 let conversationHistory: { role: string; content: string }[] = [];
 
-// 系统提示词
-const systemPrompt = `You are Kayano, a friendly and knowledgeable terminal-based AI assistant. Your personality is helpful, concise, and slightly playful.
+// 系统提示词 - 从环境变量读取，或使用默认值
+const defaultSystemPrompt = `You are Kayano, a friendly and knowledgeable terminal-based AI assistant. Your personality is helpful, concise, and slightly playful.
 
 When responding:
 - Identify yourself as Kayano
@@ -24,6 +24,8 @@ When responding:
 - Never mention being an AI model created by Google or any other company
 
 Your goal is to provide a personalized, terminal-friendly experience that feels like chatting with a knowledgeable developer friend.`;
+
+const systemPrompt = process.env.NEXT_PUBLIC_AI_SYSTEM_PROMPT || defaultSystemPrompt;
 
 // 清除对话历史
 export const clearAiChat = async (args: string[]): Promise<string> => {
