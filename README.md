@@ -1,131 +1,118 @@
-# [💻 LiveTerm - build terminal styled websites in minutes!](https://liveterm.vercel.app)
+# [💻 KayanoShy's Terminal Website](https://www.kayano.fun)
 
-Highly customizable, easy-to-use, and minimal terminal styled website template, powered by Next.js.
+This is my personal terminal-styled website built with LiveTerm and Next.js. It's a customized version of the original [LiveTerm](https://github.com/Cveinnt/LiveTerm) project.
 
-Building a simple website with LiveTerm only takes **minutes**, and you only need to work with **one** file: `config.json`. After you cloned this repository, simply run `yarn install && yarn dev` and start editing `config.json` to build your website!
+## 🔄 Customizations & Improvements
 
-LiveTerm can be used to build a variety of websites:
+### UI/UX Changes
+- **Minimalist Initial View**: The website now starts with just a command prompt, without displaying personal information upfront
+- **English Content**: All content has been translated to English for better accessibility
+- **Improved Command Structure**: Commands have been reorganized for better user experience
+- **Custom Banner**: Updated the ASCII banner with my personal branding
 
-- [personal website](https://cveinnt.com)
-- [browser startpage](https://livetermstart.vercel.app/)
-- [project page](https://liveterm.vercel.app/)
-- or maybe just a cool browser music player...be creative!
+### Content Changes
+- **Personal Information**: Updated with my education, skills, and project experience
+- **Resume Command**: Added a detailed resume that displays directly in the terminal
+- **GitHub Integration**: Modified to link to my GitHub repositories
 
-Feel free to play with the web demo above!
+### Technical Changes
+- **Removed Sumfetch**: Simplified the codebase by removing the sumfetch component
+- **Enhanced Help Command**: Improved the help command with better categorization
+- **Direct Information Display**: Information is now displayed directly in the terminal instead of opening external links
 
-## 📸 Showcase
+## 📸 Website Features
 
-<p align="center">
-<img src="./demo/demo.gif" width="600"><br>
-<strong>LiveTerm with different themes</strong>
-</p>
+### Available Commands
 
-<p align="center">
-<img src="./demo/cveinnt.png" width="600"><br>
-<strong><a href="https://cveinnt.com" target=_blank>my personal website</a></strong>
-</p>
+Here are some of the key commands available on my website:
 
-## 🚀 Ship your LiveTerm site in less than 5 minutes
+- `help` - List all available commands
+- `about` - Display information about me and my skills
+- `resume` - View my detailed resume directly in the terminal
+- `repo` - Visit my GitHub repositories
+- `email` - Contact me via email
 
-LiveTerm requires the `yarn` package manager. You can install `yarn` [here](https://classic.yarnpkg.com/lang/en/docs/install/).
+### Navigation
 
-Simply run the following commmand in your terminal:
+- Use `Tab` for command completion
+- Use `Ctrl+L` or type `clear` to clear the terminal
+- Use arrow keys to navigate command history
 
-```bash
-sh -c "$(curl -fsSL https://raw.github.com/Cveinnt/LiveTerm/main/install/install.sh)"
-```
+## 🚀 Deployment
 
-This will install LiveTerm to the current directory. You can start building your website with:
+This website is deployed on Vercel and accessible at [www.kayano.fun](https://www.kayano.fun).
 
-```bash
-cd LiveTerm && yarn dev
-```
+### Local Development
 
-Start editing `config.json` and try saving and see the updated changes!
-
-Alternatively, you can clone this repository to a location of your choosing
-
-```bash
-git clone https://github.com/Cveinnt/LiveTerm.git && cd LiveTerm
-```
-
-Then install dependencies and start developing there:
+If you want to run this website locally:
 
 ```bash
-yarn install && yarn dev
+# Clone the repository
+git clone https://github.com/KayanoLiam/LiveTerm.git
+
+# Navigate to the project directory
+cd LiveTerm
+
+# Install dependencies
+npm install
+# or
+yarn install
+
+# Start the development server
+npm run dev
+# or
+yarn dev
 ```
 
-### Docker Usage
+The website will be available at [http://localhost:3000](http://localhost:3000).
 
-First, clone the project and edit `config.json` to your liking. Then run the following to start the container in the background:
+## 📝 Configuration Details
 
-```shell
-docker-compose up -d
-```
+### Key Files Modified
 
-If you **know** what you were doing, you can also try changing `Dockerfile` & `docker-compose.yml`!
-Learn more about Docker [here](https://docs.docker.com/get-started/overview/ 'here').
+The following files were modified from the original LiveTerm project:
 
-## 📄 Configuration
+- `config.json` - Updated with my personal information and preferences
+- `src/utils/bin/commands.ts` - Modified commands and added custom functionality
+- `src/utils/bin/index.ts` - Removed sumfetch component
+- `public/manifest.json` - Updated website metadata
 
-### Basic Configuration
-
-90% of LiveTerm's configurations are done through the `config.json` file.
+### Example Configuration
 
 ```javascript
+// Example of my customized config.json
 {
-  "readmeUrl": // create a Github README and link it here!
-  "title": // title of the website
-  "name": // your name, included in 'about' command
-  "ascii": // ascii art to display
+  "readmeUrl": "https://raw.githubusercontent.com/KayanoLiam/KayanoLiam/main/README.md",
+  "title": "Kayano's Terminal",
+  "name": "KayanoShy",
+  "ascii": "liveterm",
   "social": {
-    "github": // your handle
-    "linkedin": // your handle
+    "github": "KayanoLiam"
   },
-  "email": // your email
-  "ps1_hostname": "liveterm" // hostname in prompt
-  "ps1_username": "visitor", // username in prompt
-  "resume_url": "../resume.pdf", // path to your resume
-  "non_terminal_url": "W",
-  "colors": {
-    "light": {
-      ...
-    },
-    "dark": {
-      ... // you can use existing templates in themes.json or use your own!
-    }
-  }
+  "email": "Kayano04@outlook.jp",
+  "ps1_hostname": "kayano.fun",
+  "ps1_username": "visitor"
 }
 ```
 
-Feel free to change it as you see fit!
-
-### Themes
-
-You can find several pre-configured themes in `themes.json`, and you can replace the colors in `config.json` with the theme color you like! The themes are based on the themes on [this website](https://glitchbone.github.io/vscode-base16-term/#/).
-
-For a better preview of the themes, checkout the images in the `demo` folder.
-
-### Favicons
-
-Favicons are located in `public/`, along with the other files you may want to upload to your website. I used this [website](https://www.favicon-generator.org/) to generate favicons.
-
 ### Banner
 
-You may also want to change the output of the `banner` command. To do that, simply paste your generated banner in `src/utils/bin/commands.ts`. I used this [website](https://manytools.org/hacker-tools/ascii-banner/) to generate my banner.
+The ASCII banner was generated using [ASCII Banner Generator](https://manytools.org/hacker-tools/ascii-banner/) and customized to display my name.
 
-### Advanced Configuration
+## 🌐 Deployment on Vercel
 
-If you want to further customize your page, feel free to change the source code to your liking!
+This website is deployed using [Vercel](https://vercel.com/), which provides seamless integration with Next.js applications. The deployment process involves:
 
-## 🌐 Deploy on Vercel
+1. Pushing code to the GitHub repository
+2. Connecting the repository to Vercel
+3. Configuring the custom domain (www.kayano.fun)
 
-The easiest way to deploy a Next.js app is to use the [Vercel Platform](https://vercel.com/) from the creators of Next.js.
+## 👏 Acknowledgements
 
-You can install `vercel` cli and follow the instruction [here](https://vercel.com/docs/concepts/deployments/overview).
+- Original [LiveTerm](https://github.com/Cveinnt/LiveTerm) project by [Cveinnt](https://github.com/Cveinnt)
+- Based on [Terminal](https://github.com/m4tt72/terminal) by M4TT72
+- Built with [Next.js](https://nextjs.org/)
 
-You can also connect your github account to vercel and have vercel automatically deploy the github repository for you.
+## 🔒 License
 
-## Credit
-
-Based on M4TT72's awesome [Terminal](https://github.com/m4tt72/terminal).
+This project is licensed under the MIT License - see the original [LiveTerm repository](https://github.com/Cveinnt/LiveTerm) for details.
