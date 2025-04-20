@@ -1,14 +1,19 @@
 import * as bin from './bin';
+import commandMapping from './bin/command_mapping';
 
 export const handleTabCompletion = (
   command: string,
   setCommand: React.Dispatch<React.SetStateAction<string>>,
 ) => {
-  const commands = Object.keys(bin).filter((entry) =>
+  // Combine commands from bin and commandMapping
+  const allCommands = [...Object.keys(bin), ...Object.keys(commandMapping)];
+
+  // Filter commands that start with the current input
+  const matchingCommands = allCommands.filter((entry) =>
     entry.startsWith(command),
   );
 
-  if (commands.length === 1) {
-    setCommand(commands[0]);
+  if (matchingCommands.length === 1) {
+    setCommand(matchingCommands[0]);
   }
 };
