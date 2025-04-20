@@ -25,6 +25,10 @@ export const help = async (args: string[]): Promise<string> => {
 'resume' - view my detailed resume
 'repo' - visit my GitHub repositories
 'email' - contact me via email
+
+<b>AI Chat</b>
+'ai [question]' - chat with AI assistant
+'ai-clear' - clear AI chat history
 `;
 };
 
@@ -52,7 +56,8 @@ Welcome to my terminal website!
 - 'help' - list all available commands
 - 'resume' - view my detailed resume
 - 'repo' - visit my GitHub repositories
-- 'email' - contact me via email`;
+- 'email' - contact me via email
+- 'ai [question]' - chat with AI assistant`;
 };
 
 export const resume = async (args: string[]): Promise<string> => {

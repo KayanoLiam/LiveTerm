@@ -16,6 +16,7 @@ This is my personal terminal-styled website built with LiveTerm and Next.js. It'
 - **GitHub Integration**: Modified to link to my GitHub repositories
 
 ### Technical Changes
+- **AI Chat Integration**: Added AI chat functionality using Gemini API
 - **Removed Article System**: Simplified the website by removing the article/blog functionality
 - **Removed Sumfetch**: Simplified the codebase by removing the sumfetch component
 - **Enhanced Help Command**: Improved the help command with better categorization
@@ -32,6 +33,8 @@ Here are some of the key commands available on my website:
 - `resume` - View my detailed resume directly in the terminal
 - `repo` - Visit my GitHub repositories
 - `email` - Contact me via email
+- `ai [question]` - Chat with AI assistant
+- `ai-clear` - Clear AI chat history
 
 ### Navigation
 
@@ -73,11 +76,13 @@ The website will be available at [http://localhost:3000](http://localhost:3000).
 
 The following files were modified from the original LiveTerm project:
 
-- `config.json` - Updated with my personal information and preferences
+- `config.json` - Updated with my personal information and preferences and added Gemini API key
 - `src/utils/bin/commands.ts` - Modified commands and added custom functionality
-- `src/utils/bin/index.ts` - Removed sumfetch component and article functionality
+- `src/utils/bin/index.ts` - Removed sumfetch component and article functionality, added AI chat
 - `public/manifest.json` - Updated website metadata
 - `src/styles/global.css` - Simplified by removing article-related styles
+- Added `src/utils/bin/ai_commands.ts` - Added AI chat functionality
+- Added `src/utils/bin/command_aliases.ts` - Added command aliases for AI chat
 - Removed `src/utils/bin/article_commands.ts` - Removed article functionality
 - Removed `src/utils/data/articles.ts` - Removed article data
 - Removed `src/utils/copyCode.ts` - Removed code copy functionality for articles
@@ -96,7 +101,8 @@ The following files were modified from the original LiveTerm project:
   },
   "email": "Kayano04@outlook.jp",
   "ps1_hostname": "kayano.fun",
-  "ps1_username": "visitor"
+  "ps1_username": "visitor",
+  "geminiApiKey": "YOUR_GEMINI_API_KEY"
 }
 ```
 

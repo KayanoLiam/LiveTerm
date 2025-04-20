@@ -9,6 +9,7 @@
   "email": "Kayano04@outlook.jp",
   "ps1_hostname": "kayano.fun",
   "ps1_username": "visitor",
+  "geminiApiKey": "",
   "repo": "https://github.com/KayanoLiam/LiveTerm",
   "resume_url": "/resume.pdf",
   "donate_urls": {
