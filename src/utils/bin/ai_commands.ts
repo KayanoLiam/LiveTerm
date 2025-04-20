@@ -5,11 +5,16 @@ import config from '../../../config.json';
 const hasApiKey = config.geminiApiKey && config.geminiApiKey.length > 0;
 
 // AI对话历史记录
-let conversationHistory: { role: string; content: string }[] = [];
+let conversationHistory: { role: string; content: string }[] = [
+  { role: "model", content: "你的名字是kayano" }
+];
 
 // 清除对话历史
 export const clearAiChat = async (args: string[]): Promise<string> => {
-  conversationHistory = [];
+  // 保留系统提示词
+  conversationHistory = [
+    { role: "model", content: "你的名字是kayano" }
+  ];
   return "AI对话历史已清除。";
 };
 
@@ -51,11 +56,11 @@ export const aiChat = async (args: string[]): Promise<string> => {
 
   // 获取用户输入
   const userInput = args.join(' ');
-  
+
   try {
     // 添加用户消息到历史记录
     conversationHistory.push({ role: "user", content: userInput });
-    
+
     // 准备请求数据
     const requestData = {
       contents: [
@@ -67,7 +72,7 @@ export const aiChat = async (args: string[]): Promise<string> => {
         }
       ]
     };
-    
+
     // 调用Gemini API
     const response = await axios.post(
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${config.geminiApiKey}`,
@@ -78,20 +83,20 @@ export const aiChat = async (args: string[]): Promise<string> => {
         }
       }
     );
-    
+
     // 处理响应
-    if (response.data && 
-        response.data.candidates && 
-        response.data.candidates[0] && 
-        response.data.candidates[0].content && 
-        response.data.candidates[0].content.parts && 
+    if (response.data &&
+        response.data.candidates &&
+        response.data.candidates[0] &&
+        response.data.candidates[0].content &&
+        response.data.candidates[0].content.parts &&
         response.data.candidates[0].content.parts[0]) {
-      
+
       const aiResponse = response.data.candidates[0].content.parts[0].text;
-      
+
       // 添加AI回复到历史记录
       conversationHistory.push({ role: "assistant", content: aiResponse });
-      
+
       // 格式化输出
       return `
 <div style="border-left: 2px solid #ff8037; padding-left: 10px; margin: 10px 0;">
@@ -124,12 +129,12 @@ function formatAiResponse(text: string): string {
     const languageMatch = code.match(/^([a-zA-Z]+)\n/);
     let language = '';
     let codeContent = code;
-    
+
     if (languageMatch) {
       language = languageMatch[1];
       codeContent = code.substring(languageMatch[0].length);
     }
-    
+
     return `
 <div style="background-color: rgba(0, 0, 0, 0.3); border-radius: 5px; margin: 10px 0; overflow: auto;">
   ${language ? `<div style="background-color: rgba(0, 0, 0, 0.5); padding: 5px 10px; color: #ff8037; font-size: 0.8em;">${language}</div>` : ''}
@@ -137,22 +142,22 @@ function formatAiResponse(text: string): string {
 </div>
 `;
   });
-  
+
   // 处理粗体
   text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-  
+
   // 处理斜体
   text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
-  
+
   // 处理列表
   text = text.replace(/^- (.*)/gm, '• $1');
-  
+
   // 处理链接
   text = text.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" style="color: #83a598; text-decoration: underline;">$1</a>');
-  
+
   // 处理段落
   text = text.replace(/\n\n/g, '</p><p>');
   text = `<p>${text}</p>`;
-  
+
   return text;
 }
