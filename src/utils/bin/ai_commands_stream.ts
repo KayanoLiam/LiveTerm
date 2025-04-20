@@ -94,7 +94,10 @@ Examples:
           category: "HARM_CATEGORY_DANGEROUS_CONTENT",
           threshold: "BLOCK_MEDIUM_AND_ABOVE"
         }
-      ]
+      ],
+      systemInstruction: {
+        parts: [{ text: systemPrompt }]
+      }
     };
 
     // 如果有对话历史，则使用对话格式
@@ -104,17 +107,6 @@ Examples:
 
       // 创建新的内容数组
       const contents = [];
-
-      // 添加系统提示词
-      contents.push({
-        role: "user",
-        parts: [{ text: systemPrompt }]
-      });
-
-      contents.push({
-        role: "model",
-        parts: [{ text: "I understand. I'm kayano, and I'll answer your questions as requested." }]
-      });
 
       // 添加历史对话
       conversationHistory.forEach(msg => {
@@ -137,22 +129,6 @@ Examples:
 
       // 替换请求数据中的contents
       requestData.contents = contents;
-    } else {
-      // 如果没有历史对话，添加系统提示词
-      requestData.contents = [
-        {
-          role: "user",
-          parts: [{ text: systemPrompt }]
-        },
-        {
-          role: "model",
-          parts: [{ text: "I understand. I'm kayano, and I'll answer your questions as requested." }]
-        },
-        {
-          role: "user",
-          parts: [{ text: userInput }]
-        }
-      ];
     }
 
     // 显示用户问题和加载指示器
