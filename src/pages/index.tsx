@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import React from 'react';
-import config from '../../config.json';
+import envConfig from '../utils/env-config';
 import { Input } from '../components/input';
 import { useHistory } from '../components/history/hook';
 import { History } from '../components/history/History';
@@ -38,7 +38,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
   return (
     <>
       <Head>
-        <title>{config.title}</title>
+        <title>{envConfig.title}</title>
       </Head>
 
       <div className="p-8 overflow-hidden h-full border-2 rounded border-light-yellow dark:border-dark-yellow">

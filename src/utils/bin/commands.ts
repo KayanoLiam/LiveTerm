@@ -1,7 +1,8 @@
 // List of commands that do not require API calls
 
 import * as bin from './index';
-import config from '../../../config.json';
+import envConfig from '../env-config';
+import { education, languages, skills, projects } from '../env-config';
 
 // Help
 export const help = async (args: string[]): Promise<string> => {
@@ -34,22 +35,22 @@ export const help = async (args: string[]): Promise<string> => {
 
 // Redirection
 export const repo = async (args: string[]): Promise<string> => {
-  window.open(`https://github.com/${config.social.github}?tab=repositories`);
+  window.open(`https://github.com/${envConfig.social.github}?tab=repositories`);
   return 'Opening Github repositories...';
 };
 
 // About
 export const about = async (args: string[]): Promise<string> => {
-  return `Hi, I am ${config.name}.
+  return `Hi, I am ${envConfig.name}.
 Welcome to my terminal website!
 
 <b>About Me</b>
-- Education: Leshan Normal University - Japanese Major
-- Languages: Chinese (Native), Japanese (JLPT N2 Certificate)
-- Skills: Java, SpringBoot, JavaScript, Kotlin, Vue, Git, Python, Rust, Actix-web
+- Education: ${education}
+- Languages: ${languages}
+- Skills: ${skills}
 
 <b>Project Experience</b>
-- Hospital Management System: A comprehensive system developed with Vue frontend and SpringBoot backend
+- ${projects}
 - Personal Terminal Website: This interactive terminal-style website built with Next.js and LiveTerm
 
 <b>Available Commands</b>
@@ -65,23 +66,23 @@ export const resume = async (args: string[]): Promise<string> => {
   <u><b>KayanoHaruka's Resume</b></u>
 
   <b>Education</b>
-  - Leshan Normal University - Japanese Major
+  - ${education}
   - Japanese Language Proficiency: JLPT N2 Certificate
 
   <b>Skills</b>
   - <b>Backend Development</b>: Java, SpringBoot, Python, Rust, Actix-web, Kotlin
   - <b>Frontend Development</b>: JavaScript, Vue
   - <b>Tools</b>: Git, VS Code, IntelliJ IDEA
-  - <b>Languages</b>: Chinese (Native), Japanese (Conversational)
+  - <b>Languages</b>: ${languages}
 
   <b>Project Experience</b>
-  - <b>Hospital Management System</b>: A comprehensive management system developed with Vue frontend and SpringBoot backend
+  - <b>Hospital Management System</b>: ${projects}
   - <b>Personal Terminal Website</b>: An interactive terminal-style personal website built with Next.js and LiveTerm
   - <b>Other Projects</b>: Please visit my GitHub repositories for more projects
 
   <b>Contact Information</b>
-  - Email: ${config.email}
-  - GitHub: github.com/${config.social.github}
+  - Email: ${envConfig.email}
+  - GitHub: github.com/${envConfig.social.github}
   `;
 };
 
@@ -89,19 +90,19 @@ export const resume = async (args: string[]): Promise<string> => {
 export const donate = async (args: string[]): Promise<string> => {
   return `thank you for your interest.
 here are the ways you can support my work:
-- <u><a class="text-light-blue dark:text-dark-blue underline" href="${config.donate_urls.paypal}" target="_blank">paypal</a></u>
-- <u><a class="text-light-blue dark:text-dark-blue underline" href="${config.donate_urls.patreon}" target="_blank">patreon</a></u>
+- <u><a class="text-light-blue dark:text-dark-blue underline" href="${envConfig.donate_urls.paypal}" target="_blank">paypal</a></u>
+- <u><a class="text-light-blue dark:text-dark-blue underline" href="${envConfig.donate_urls.patreon}" target="_blank">patreon</a></u>
 `;
 };
 
 // Contact
 export const email = async (args: string[]): Promise<string> => {
-  window.open(`mailto:${config.email}`);
-  return `Opening mailto:${config.email}...`;
+  window.open(`mailto:${envConfig.email}`);
+  return `Opening mailto:${envConfig.email}...`;
 };
 
 export const github = async (args: string[]): Promise<string> => {
-  window.open(`https://github.com/${config.social.github}/`);
+  window.open(`https://github.com/${envConfig.social.github}/`);
 
   return 'Opening github...';
 };
@@ -137,7 +138,7 @@ export const echo = async (args: string[]): Promise<string> => {
 };
 
 export const whoami = async (args: string[]): Promise<string> => {
-  return `${config.ps1_username}`;
+  return `${envConfig.ps1_username}`;
 };
 
 export const ls = async (args: string[]): Promise<string> => {
@@ -189,7 +190,7 @@ export const banner = (args?: string[]): string => {
 ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
 
 
-Welcome to ${config.name}'s terminal website!
+Welcome to ${envConfig.name}'s terminal website!
 
 Type 'help' to see the list of available commands.
 Type 'about' to learn more about me.

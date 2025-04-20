@@ -1,15 +1,15 @@
 import axios from 'axios';
-import config from '../../config.json';
+import envConfig from './env-config';
 
 export const getProjects = async () => {
   const { data } = await axios.get(
-    `https://api.github.com/users/${config.social.github}/repos`,
+    `https://api.github.com/users/${envConfig.social.github}/repos`,
   );
   return data;
 };
 
 export const getReadme = async () => {
-  const { data } = await axios.get(config.readmeUrl);
+  const { data } = await axios.get(envConfig.readmeUrl);
   return data;
 };
 
