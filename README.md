@@ -1,12 +1,12 @@
-# [💻 KayanoShy's Terminal Website](https://www.kayano.fun)
+# [💻 KayanoHaruka's Terminal Website](https://www.kayano.fun)
 
 This is my personal terminal-styled website built with LiveTerm and Next.js. It's a customized version of the original [LiveTerm](https://github.com/Cveinnt/LiveTerm) project.
 
 ## 🔄 Customizations & Improvements
 
 ### UI/UX Changes
-- **Minimalist Initial View**: The website now starts with just a command prompt, without displaying personal information upfront
-- **English Content**: All content has been translated to English for better accessibility
+- **Minimalist Initial View**: The website starts with just a command prompt, without displaying personal information upfront
+- **Bilingual Support**: Support for both English and Chinese content
 - **Improved Command Structure**: Commands have been reorganized for better user experience
 - **Custom Banner**: Updated the ASCII banner with my personal branding
 
@@ -16,6 +16,7 @@ This is my personal terminal-styled website built with LiveTerm and Next.js. It'
 - **GitHub Integration**: Modified to link to my GitHub repositories
 
 ### Technical Changes
+- **Removed Article System**: Simplified the website by removing the article/blog functionality
 - **Removed Sumfetch**: Simplified the codebase by removing the sumfetch component
 - **Enhanced Help Command**: Improved the help command with better categorization
 - **Direct Information Display**: Information is now displayed directly in the terminal instead of opening external links
@@ -74,8 +75,12 @@ The following files were modified from the original LiveTerm project:
 
 - `config.json` - Updated with my personal information and preferences
 - `src/utils/bin/commands.ts` - Modified commands and added custom functionality
-- `src/utils/bin/index.ts` - Removed sumfetch component
+- `src/utils/bin/index.ts` - Removed sumfetch component and article functionality
 - `public/manifest.json` - Updated website metadata
+- `src/styles/global.css` - Simplified by removing article-related styles
+- Removed `src/utils/bin/article_commands.ts` - Removed article functionality
+- Removed `src/utils/data/articles.ts` - Removed article data
+- Removed `src/utils/copyCode.ts` - Removed code copy functionality for articles
 
 ### Example Configuration
 
@@ -84,7 +89,7 @@ The following files were modified from the original LiveTerm project:
 {
   "readmeUrl": "https://raw.githubusercontent.com/KayanoLiam/KayanoLiam/main/README.md",
   "title": "Kayano's Terminal",
-  "name": "KayanoShy",
+  "name": "KayanoHaruka",
   "ascii": "liveterm",
   "social": {
     "github": "KayanoLiam"

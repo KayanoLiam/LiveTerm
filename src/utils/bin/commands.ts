@@ -25,16 +25,6 @@ export const help = async (args: string[]): Promise<string> => {
 'resume' - view my detailed resume
 'repo' - visit my GitHub repositories
 'email' - contact me via email
-
-<b>Articles</b>
-'articles' - list all available articles
-'article [number]' - read a specific article by number
-'tags' - list all article tags
-'tag [name]' - list articles with a specific tag
-'write-article [password]' - create a new article (admin only)
-'save-article [title] | [tags] | [content]' - save a new article
-'cancel-article' - cancel article creation
-'delete-article [id] [password]' - delete an article (admin only)
 `;
 };
 
@@ -62,15 +52,12 @@ Welcome to my terminal website!
 - 'help' - list all available commands
 - 'resume' - view my detailed resume
 - 'repo' - visit my GitHub repositories
-- 'email' - contact me via email
-- 'articles' - browse my articles and blog posts
-- 'article [number]' - read a specific article
-- 'delete-article [id] [password]' - delete an article (admin only)`;
+- 'email' - contact me via email`;
 };
 
 export const resume = async (args: string[]): Promise<string> => {
   return `
-  <u><b>KayanoShy's Resume</b></u>
+  <u><b>KayanoHaruka's Resume</b></u>
 
   <b>Education</b>
   - Leshan Normal University - Japanese Major
@@ -189,18 +176,17 @@ export const sudo = async (args?: string[]): Promise<string> => {
 // Banner
 export const banner = (args?: string[]): string => {
   return `
-██╗  ██╗ █████╗ ██╗   ██╗ █████╗ ███╗   ██╗ ██████╗    ███████╗██╗  ██╗██╗   ██╗
-██║ ██╔╝██╔══██╗╚██╗ ██╔╝██╔══██╗████╗  ██║██╔═══██╗   ██╔════╝██║  ██║╚██╗ ██╔╝
-█████╔╝ ███████║ ╚████╔╝ ███████║██╔██╗ ██║██║   ██║   ███████╗███████║ ╚████╔╝
-██╔═██╗ ██╔══██║  ╚██╔╝  ██╔══██║██║╚██╗██║██║   ██║   ╚════██║██╔══██║  ╚██╔╝
-██║  ██╗██║  ██║   ██║   ██║  ██║██║ ╚████║╚██████╔╝██╗███████║██║  ██║   ██║
-╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝╚══════╝╚═╝  ╚═╝   ╚═╝
+██╗  ██╗ █████╗ ██╗   ██╗ █████╗ ███╗   ██╗ ██████╗    ██╗  ██╗ █████╗ ██████╗ ██╗   ██╗██╗  ██╗ █████╗
+██║ ██╔╝██╔══██╗╚██╗ ██╔╝██╔══██╗████╗  ██║██╔═══██╗   ██║  ██║██╔══██╗██╔══██╗██║   ██║██║ ██╔╝██╔══██╗
+█████╔╝ ███████║ ╚████╔╝ ███████║██╔██╗ ██║██║   ██║   ███████║███████║██████╔╝██║   ██║█████╔╝ ███████║
+██╔═██╗ ██╔══██║  ╚██╔╝  ██╔══██║██║╚██╗██║██║   ██║   ██╔══██║██╔══██║██╔══██╗██║   ██║██╔═██╗ ██╔══██║
+██║  ██╗██║  ██║   ██║   ██║  ██║██║ ╚████║╚██████╔╝██╗██║  ██║██║  ██║██║  ██║╚██████╔╝██║  ██╗██║  ██║
+╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
 
 
 Welcome to ${config.name}'s terminal website!
 
 Type 'help' to see the list of available commands.
 Type 'about' to learn more about me.
-Type 'articles' to browse my articles and blog posts.
 `;
 };

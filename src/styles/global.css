@@ -9,7 +9,7 @@
 }
 
 * {
-  font-family: 'Hack', monospace;
+  font-family: 'Hack', 'PingFang SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
 }
 
 html,
@@ -38,102 +38,4 @@ div#__next > div {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #ff8037;
-}
-
-/* Article styles */
-.article-container {
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 10px 0;
-}
-
-.article-header {
-  margin-bottom: 20px;
-}
-
-.article-header h1 {
-  font-size: 1.5em;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.article-date {
-  font-style: italic;
-  margin-bottom: 5px;
-  opacity: 0.8;
-}
-
-.article-tags {
-  margin-bottom: 15px;
-}
-
-.article-content {
-  line-height: 1.6;
-}
-
-.article-content h1 {
-  font-size: 1.4em;
-  font-weight: bold;
-  margin: 20px 0 10px 0;
-  padding-bottom: 5px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.article-content h2 {
-  font-size: 1.2em;
-  font-weight: bold;
-  margin: 15px 0 10px 0;
-}
-
-.article-content h3 {
-  font-size: 1.1em;
-  font-weight: bold;
-  margin: 15px 0 10px 0;
-}
-
-.article-content p {
-  margin-bottom: 15px;
-}
-
-.article-content ul, .article-content ol {
-  margin-left: 20px;
-  margin-bottom: 15px;
-}
-
-.article-content ul li {
-  list-style-type: disc;
-  margin-bottom: 5px;
-}
-
-.article-content ol li {
-  list-style-type: decimal;
-  margin-bottom: 5px;
-}
-
-.article-content pre {
-  background-color: rgba(0, 0, 0, 0.2);
-  padding: 10px;
-  border-radius: 5px;
-  overflow-x: auto;
-  margin-bottom: 15px;
-}
-
-.article-content code {
-  font-family: 'Hack', monospace;
-  background-color: rgba(0, 0, 0, 0.2);
-  padding: 2px 4px;
-  border-radius: 3px;
-}
-
-.article-content pre code {
-  background-color: transparent;
-  padding: 0;
-}
-
-.article-content blockquote {
-  border-left: 3px solid rgba(255, 255, 255, 0.3);
-  padding-left: 10px;
-  margin-left: 20px;
-  margin-bottom: 15px;
-  font-style: italic;
 }
