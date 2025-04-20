@@ -14,38 +14,75 @@ export const help = async (args: string[]): Promise<string> => {
       c += Object.keys(bin).sort()[i - 1] + ' ';
     }
   }
-  return `Welcome! Here are all the available commands:
+  return `Available commands:
 \n${c}\n
-[tab]: trigger completion.
-[ctrl+l]/clear: clear terminal.\n
-Type 'sumfetch' to display summary.
+<b>Navigation</b>
+[tab]: trigger completion
+[ctrl+l]/clear: clear terminal
+
+<b>Key Commands</b>
+'about' - learn more about me
+'resume' - view my detailed resume
+'repo' - visit my GitHub repositories
+'email' - contact me via email
 `;
 };
 
 // Redirection
 export const repo = async (args: string[]): Promise<string> => {
-  window.open(`${config.repo}`);
-  return 'Opening Github repository...';
+  window.open(`https://github.com/${config.social.github}?tab=repositories`);
+  return 'Opening Github repositories...';
 };
 
 // About
 export const about = async (args: string[]): Promise<string> => {
-  return `Hi, I am ${config.name}. 
-Welcome to my website!
-More about me:
-'sumfetch' - short summary.
-'resume' - my latest resume.
-'readme' - my github readme.`;
+  return `Hi, I am ${config.name}.
+Welcome to my terminal website!
+
+<b>About Me</b>
+- Education: Leshan Normal University - Japanese Major
+- Languages: Chinese (Native), Japanese (JLPT N2 Certificate)
+- Skills: Java, SpringBoot, JavaScript, Kotlin, Vue, Git, Python, Rust, Actix-web
+
+<b>Project Experience</b>
+- Hospital Management System: A comprehensive system developed with Vue frontend and SpringBoot backend
+- Personal Terminal Website: This interactive terminal-style website built with Next.js and LiveTerm
+
+<b>Available Commands</b>
+- 'help' - list all available commands
+- 'resume' - view my detailed resume
+- 'repo' - visit my GitHub repositories
+- 'email' - contact me via email`;
 };
 
 export const resume = async (args: string[]): Promise<string> => {
-  window.open(`${config.resume_url}`);
-  return 'Opening resume...';
+  return `
+  <u><b>KayanoShy's Resume</b></u>
+
+  <b>Education</b>
+  - Leshan Normal University - Japanese Major
+  - Japanese Language Proficiency: JLPT N2 Certificate
+
+  <b>Skills</b>
+  - <b>Backend Development</b>: Java, SpringBoot, Python, Rust, Actix-web, Kotlin
+  - <b>Frontend Development</b>: JavaScript, Vue
+  - <b>Tools</b>: Git, VS Code, IntelliJ IDEA
+  - <b>Languages</b>: Chinese (Native), Japanese (Conversational)
+
+  <b>Project Experience</b>
+  - <b>Hospital Management System</b>: A comprehensive management system developed with Vue frontend and SpringBoot backend
+  - <b>Personal Terminal Website</b>: An interactive terminal-style personal website built with Next.js and LiveTerm
+  - <b>Other Projects</b>: Please visit my GitHub repositories for more projects
+
+  <b>Contact Information</b>
+  - Email: ${config.email}
+  - GitHub: github.com/${config.social.github}
+  `;
 };
 
 // Donate
 export const donate = async (args: string[]): Promise<string> => {
-  return `thank you for your interest. 
+  return `thank you for your interest.
 here are the ways you can support my work:
 - <u><a class="text-light-blue dark:text-dark-blue underline" href="${config.donate_urls.paypal}" target="_blank">paypal</a></u>
 - <u><a class="text-light-blue dark:text-dark-blue underline" href="${config.donate_urls.patreon}" target="_blank">patreon</a></u>
@@ -65,9 +102,7 @@ export const github = async (args: string[]): Promise<string> => {
 };
 
 export const linkedin = async (args: string[]): Promise<string> => {
-  window.open(`https://www.linkedin.com/in/${config.social.linkedin}/`);
-
-  return 'Opening linkedin...';
+  return 'Sorry, I currently do not have a LinkedIn account.';
 };
 
 // Search
@@ -141,17 +176,17 @@ export const sudo = async (args?: string[]): Promise<string> => {
 // Banner
 export const banner = (args?: string[]): string => {
   return `
-█████        ███                       ███████████                                   
-░░███        ░░░                       ░█░░░███░░░█                                   
- ░███        ████  █████ █████  ██████ ░   ░███  ░   ██████  ████████  █████████████  
- ░███       ░░███ ░░███ ░░███  ███░░███    ░███     ███░░███░░███░░███░░███░░███░░███ 
- ░███        ░███  ░███  ░███ ░███████     ░███    ░███████  ░███ ░░░  ░███ ░███ ░███ 
- ░███      █ ░███  ░░███ ███  ░███░░░      ░███    ░███░░░   ░███      ░███ ░███ ░███ 
- ███████████ █████  ░░█████   ░░██████     █████   ░░██████  █████     █████░███ █████
-░░░░░░░░░░░ ░░░░░    ░░░░░     ░░░░░░     ░░░░░     ░░░░░░  ░░░░░     ░░░░░ ░░░ ░░░░░ 
+██╗  ██╗ █████╗ ██╗   ██╗ █████╗ ███╗   ██╗ ██████╗    ███████╗██╗  ██╗██╗   ██╗
+██║ ██╔╝██╔══██╗╚██╗ ██╔╝██╔══██╗████╗  ██║██╔═══██╗   ██╔════╝██║  ██║╚██╗ ██╔╝
+█████╔╝ ███████║ ╚████╔╝ ███████║██╔██╗ ██║██║   ██║   ███████╗███████║ ╚████╔╝
+██╔═██╗ ██╔══██║  ╚██╔╝  ██╔══██║██║╚██╗██║██║   ██║   ╚════██║██╔══██║  ╚██╔╝
+██║  ██╗██║  ██║   ██║   ██║  ██║██║ ╚████║╚██████╔╝██╗███████║██║  ██║   ██║
+╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝╚══════╝╚═╝  ╚═╝   ╚═╝
+
+
+Welcome to ${config.name}'s terminal website!
 
 Type 'help' to see the list of available commands.
-Type 'sumfetch' to display summary.
-Type 'repo' or click <u><a class="text-light-blue dark:text-dark-blue underline" href="${config.repo}" target="_blank">here</a></u> for the Github repository.
+Type 'about' to learn more about me.
 `;
 };

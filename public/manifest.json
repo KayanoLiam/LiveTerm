@@ -1,6 +1,6 @@
 {
-  "name": "LiveTerm",
-  "short_name": "LiveTerm",
+  "name": "Kayano's Terminal",
+  "short_name": "KayanoTerm",
   "theme_color": "#2E3440",
   "background_color": "#2E3440",
   "display": "fullscreen",

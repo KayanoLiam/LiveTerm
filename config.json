@@ -1,20 +1,19 @@
 {
-  "readmeUrl": "https://raw.githubusercontent.com/cveinnt/cveinnt/master/README.md",
-  "title": "LiveTerm",
-  "name": "John Doe",
+  "readmeUrl": "https://raw.githubusercontent.com/KayanoLiam/KayanoLiam/main/README.md",
+  "title": "Kayano's Terminal",
+  "name": "KayanoShy",
   "ascii": "liveterm",
   "social": {
-    "github": "github",
-    "linkedin": "linkedin"
+    "github": "KayanoLiam"
   },
-  "email": "contact@email.com",
-  "ps1_hostname": "liveterm",
+  "email": "Kayano04@outlook.jp",
+  "ps1_hostname": "kayano.fun",
   "ps1_username": "visitor",
-  "repo": "https://github.com/Cveinnt/LiveTerm",
-  "resume_url": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Resume.pdf",
+  "repo": "https://github.com/KayanoLiam/LiveTerm",
+  "resume_url": "/resume.pdf",
   "donate_urls": {
-    "paypal": "https://paypal.me/cveinnt",
-    "patreon": "https://patreon.com/cveinnt"
+    "paypal": "https://paypal.me/KayanoShy",
+    "patreon": "https://patreon.com/KayanoShy"
   },
   "colors": {
     "light": {
