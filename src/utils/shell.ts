@@ -1,6 +1,5 @@
 import React from 'react';
-import * as bin from './bin';
-import commandMapping from './bin/command_mapping';
+import allCommands from './bin';
 
 export const shell = async (
   command: string,
@@ -15,13 +14,13 @@ export const shell = async (
     clearHistory();
   } else if (command === '') {
     setHistory('');
-  } else if (Object.keys(bin).indexOf(args[0]) === -1 && !Object.keys(commandMapping).includes(args[0])) {
+  } else if (!Object.keys(allCommands).includes(args[0])) {
     setHistory(
       `shell: command not found: ${args[0]}. Try 'help' to get started.`,
     );
   } else {
-    // Check if command exists in bin or in commandMapping
-    const command = Object.keys(bin).indexOf(args[0]) !== -1 ? bin[args[0]] : commandMapping[args[0]];
+    // Get the command function from allCommands
+    const command = allCommands[args[0]];
     const output = await command(args.slice(1));
     setHistory(output);
   }

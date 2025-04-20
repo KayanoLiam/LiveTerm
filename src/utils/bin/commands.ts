@@ -63,7 +63,9 @@ Welcome to my terminal website!
 - 'resume' - view my detailed resume
 - 'repo' - visit my GitHub repositories
 - 'email' - contact me via email
-- 'articles' - browse my articles and blog posts`;
+- 'articles' - browse my articles and blog posts
+- 'article [number]' - read a specific article
+- 'delete-article [id] [password]' - delete an article (admin only)`;
 };
 
 export const resume = async (args: string[]): Promise<string> => {

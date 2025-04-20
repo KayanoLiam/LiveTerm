@@ -20,7 +20,8 @@ export const articles = async (args: string[]): Promise<string> => {
   output += "Use 'article [number]' to read a specific article by its number.\n";
   output += "Use 'tags' to see all available tags.\n";
   output += "Use 'tag [name]' to filter articles by tag.\n";
-  output += "Use 'write-article' to create a new article (admin only).";
+  output += "Use 'write-article [password]' to create a new article (admin only).\n";
+  output += "Use 'delete-article [id] [password]' to delete an article (admin only).";
 
   return output;
 };
@@ -100,7 +101,8 @@ export const tag = async (args: string[]): Promise<string> => {
     output += `Tags: ${article.tags.join(', ')}\n\n`;
   });
 
-  output += "Use 'article [number]' to read a specific article.";
+  output += "Use 'article [number]' to read a specific article.\n";
+  output += "Use 'delete-article [id] [password]' to delete an article (admin only).";
 
   return output;
 };
@@ -133,6 +135,11 @@ When you're done, type 'save-article [title] | [tags] | [content]' to save your 
 Example: save-article My New Article | tag1, tag2 | # Heading\n\nContent here...
 
 Or type 'cancel-article' to cancel.
+
+<b>Article Management</b>
+- To delete an article: delete-article [id] [password]
+- To view all articles: articles
+- To read an article: article [number]
   `;
 };
 
