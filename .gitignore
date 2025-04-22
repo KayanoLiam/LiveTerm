@@ -25,7 +25,7 @@ yarn-error.log*
 
 # local env files
 .env*.local
-.env
+# .env (commented out to allow pushing to private repo)
 .env.development
 .env.production
 
