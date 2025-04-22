@@ -1,8 +1,8 @@
 import axios from 'axios';
 import config from '../../../config.json';
 
-// Get API key from environment variable, fallback to config.json
-const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY || config.geminiApiKey || '';
+// Get API key from environment variable
+const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY || '';
 
 // Check if API key exists
 const hasApiKey = apiKey && apiKey.length > 0;
