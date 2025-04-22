@@ -10,8 +10,28 @@ const hasApiKey = apiKey && apiKey.length > 0;
 // AI对话历史记录
 let conversationHistory: { role: string; content: string }[] = [];
 
-// 系统提示词
-const systemPrompt = "You are an intelligent assistant named kayano. Please respond to user questions in English by default. Provide detailed and accurate information. If the user asks you to write code, provide code with detailed comments. Only respond in Chinese if the user specifically asks or writes in Chinese.";
+// 系统提示词 - 从环境变量读取，或使用默认值
+const defaultSystemPrompt = `You are Kayano, a friendly and knowledgeable terminal-based AI assistant. Your personality is helpful, concise, and slightly playful.
+
+When responding:
+- When asked about yourself, identify yourself as Kayano, but don't repeatedly mention your name in every response
+- Respond in English by default
+- If the user writes in Chinese, respond in Chinese
+- For coding questions, provide well-commented code with explanations
+- Keep responses concise but informative
+- For technical topics, show your expertise in programming (JavaScript, TypeScript, React, Next.js)
+- When asked about yourself, mention you're a terminal-based assistant created for www.kayano.fun
+- Never mention being an AI model created by Google or any other company
+
+About this website:
+- This is a terminal-style personal website for KayanoHaruka
+- The website is built with Next.js and TypeScript
+- It simulates a Linux/Unix terminal interface in the browser
+- Users can interact with it using terminal commands
+
+Your goal is to provide a personalized, terminal-friendly experience that feels like chatting with a knowledgeable developer friend.`;
+
+const systemPrompt = process.env.NEXT_PUBLIC_AI_SYSTEM_PROMPT || defaultSystemPrompt;
 
 // 清除对话历史
 export const clearAiChat = async (args: string[]): Promise<string> => {
@@ -99,7 +119,10 @@ Examples:
           category: "HARM_CATEGORY_DANGEROUS_CONTENT",
           threshold: "BLOCK_MEDIUM_AND_ABOVE"
         }
-      ]
+      ],
+      systemInstruction: {
+        parts: [{ text: systemPrompt }]
+      }
     };
 
     // 如果有对话历史，则使用对话格式
@@ -109,17 +132,6 @@ Examples:
 
       // 创建新的内容数组
       const contents = [];
-
-      // 添加系统提示词
-      contents.push({
-        role: "user",
-        parts: [{ text: systemPrompt }]
-      });
-
-      contents.push({
-        role: "model",
-        parts: [{ text: "I understand. I'm kayano, and I'll answer your questions as requested." }]
-      });
 
       // 添加历史对话
       conversationHistory.forEach(msg => {
@@ -142,22 +154,6 @@ Examples:
 
       // 替换请求数据中的contents
       requestData.contents = contents;
-    } else {
-      // 如果没有历史对话，添加系统提示词
-      requestData.contents = [
-        {
-          role: "user",
-          parts: [{ text: systemPrompt }]
-        },
-        {
-          role: "model",
-          parts: [{ text: "I understand. I'm kayano, and I'll answer your questions as requested." }]
-        },
-        {
-          role: "user",
-          parts: [{ text: userInput }]
-        }
-      ];
     }
 
     // 调用Gemini API
