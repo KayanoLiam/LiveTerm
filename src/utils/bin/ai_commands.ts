@@ -55,12 +55,19 @@ Examples:
   // 获取用户输入
   const userInput = args.join(' ');
 
+  // 准备请求数据
+  let requestData = {
+    contents: [],
+    generationConfig: {},
+    safetySettings: []
+  };
+
   try {
     // 添加用户消息到历史记录
     conversationHistory.push({ role: "user", content: userInput });
 
-    // 准备请求数据
-    let requestData = {
+    // 设置请求数据
+    requestData = {
       contents: [
         {
           role: "user",
