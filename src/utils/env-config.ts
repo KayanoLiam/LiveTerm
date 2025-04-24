@@ -11,6 +11,7 @@ export const ps1Hostname = process.env.NEXT_PUBLIC_PS1_HOSTNAME || defaultConfig
 export const readmeUrl = process.env.NEXT_PUBLIC_README_URL || defaultConfig.readmeUrl;
 export const repoUrl = process.env.NEXT_PUBLIC_REPO_URL || defaultConfig.repo;
 export const resumeUrl = process.env.NEXT_PUBLIC_RESUME_URL || defaultConfig.resume_url;
+export const twitter = process.env.NEXT_PUBLIC_TWITTER_URL || defaultConfig.social?.twitter;
 
 // 捐赠链接
 export const paypalUrl = process.env.NEXT_PUBLIC_PAYPAL_URL || defaultConfig.donate_urls?.paypal;
@@ -28,7 +29,8 @@ const envConfig = {
   title,
   email,
   social: {
-    github: githubUsername
+    github: githubUsername,
+    twitter: twitter
   },
   ps1_username: ps1Username,
   ps1_hostname: ps1Hostname,

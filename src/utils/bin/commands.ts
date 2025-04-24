@@ -1,8 +1,6 @@
 // List of commands that do not require API calls
 
 import * as bin from './index';
-import envConfig from '../env-config';
-import { education, languages, skills, projects } from '../env-config';
 
 // Help
 export const help = async (args: string[]): Promise<string> => {
@@ -35,22 +33,33 @@ export const help = async (args: string[]): Promise<string> => {
 
 // Redirection
 export const repo = async (args: string[]): Promise<string> => {
-  window.open(`https://github.com/${envConfig.social.github}?tab=repositories`);
+  // 检查环境变量是否存在
+  if (!process.env.NEXT_PUBLIC_GITHUB_USERNAME) {
+    return 'GitHub username not configured in environment variables.';
+  }
+
+  // 使用环境变量中的用户名
+  window.open(`https://github.com/${process.env.NEXT_PUBLIC_GITHUB_USERNAME}?tab=repositories`);
   return 'Opening Github repositories...';
 };
 
 // About
 export const about = async (args: string[]): Promise<string> => {
-  return `Hi, I am ${envConfig.name}.
+  // 检查是否有足够的环境变量来显示个人信息
+  if (!process.env.NEXT_PUBLIC_NAME) {
+    return 'Personal information not configured in environment variables. Please set NEXT_PUBLIC_NAME.';
+  }
+
+  return `Hi, I am ${process.env.NEXT_PUBLIC_NAME}.
 Welcome to my terminal website!
 
 <b>About Me</b>
-- Education: ${education}
-- Languages: ${languages}
-- Skills: ${skills}
+- Education: ${process.env.NEXT_PUBLIC_EDUCATION || 'Not configured'}
+- Languages: ${process.env.NEXT_PUBLIC_LANGUAGES || 'Not configured'}
+- Skills: ${process.env.NEXT_PUBLIC_SKILLS || 'Not configured'}
 
 <b>Project Experience</b>
-- ${projects}
+- ${process.env.NEXT_PUBLIC_PROJECTS || 'Not configured'}
 - Personal Terminal Website: This interactive terminal-style website built with Next.js and LiveTerm
 
 <b>Available Commands</b>
@@ -62,48 +71,72 @@ Welcome to my terminal website!
 };
 
 export const resume = async (args: string[]): Promise<string> => {
+  // 检查是否有足够的环境变量来显示简历
+  if (!process.env.NEXT_PUBLIC_NAME) {
+    return 'Resume information not configured in environment variables. Please set NEXT_PUBLIC_NAME.';
+  }
+
   return `
-  <u><b>KayanoHaruka's Resume</b></u>
+  <u><b>${process.env.NEXT_PUBLIC_NAME}'s Resume</b></u>
 
   <b>Education</b>
-  - ${education}
-  - Japanese Language Proficiency: JLPT N2 Certificate
+  - ${process.env.NEXT_PUBLIC_EDUCATION || 'Not configured'}
 
   <b>Skills</b>
-  - <b>Backend Development</b>: Java, SpringBoot, Python, Rust, Actix-web, Kotlin
-  - <b>Frontend Development</b>: JavaScript, Vue
-  - <b>Tools</b>: Git, VS Code, IntelliJ IDEA
-  - <b>Languages</b>: ${languages}
+  - <b>Backend Development</b>: ${process.env.NEXT_PUBLIC_SKILLS || 'Not configured'}
+  - <b>Languages</b>: ${process.env.NEXT_PUBLIC_LANGUAGES || 'Not configured'}
 
   <b>Project Experience</b>
-  - <b>Hospital Management System</b>: ${projects}
+  - ${process.env.NEXT_PUBLIC_PROJECTS || 'Not configured'}
   - <b>Personal Terminal Website</b>: An interactive terminal-style personal website built with Next.js and LiveTerm
   - <b>Other Projects</b>: Please visit my GitHub repositories for more projects
 
   <b>Contact Information</b>
-  - Email: ${envConfig.email}
-  - GitHub: github.com/${envConfig.social.github}
+  - Email: ${process.env.NEXT_PUBLIC_EMAIL || 'Not configured'}
+  - GitHub: ${process.env.NEXT_PUBLIC_GITHUB_USERNAME ? `github.com/${process.env.NEXT_PUBLIC_GITHUB_USERNAME}` : 'Not configured'}
   `;
 };
 
 // Donate
 export const donate = async (args: string[]): Promise<string> => {
-  return `thank you for your interest.
-here are the ways you can support my work:
-- <u><a class="text-light-blue dark:text-dark-blue underline" href="${envConfig.donate_urls.paypal}" target="_blank">paypal</a></u>
-- <u><a class="text-light-blue dark:text-dark-blue underline" href="${envConfig.donate_urls.patreon}" target="_blank">patreon</a></u>
-`;
+  // 检查是否有足够的环境变量来显示捐赠信息
+  if (!process.env.NEXT_PUBLIC_PAYPAL_URL && !process.env.NEXT_PUBLIC_PATREON_URL) {
+    return 'Donation information not configured in environment variables. Please set NEXT_PUBLIC_PAYPAL_URL or NEXT_PUBLIC_PATREON_URL.';
+  }
+
+  let donationLinks = 'thank you for your interest.\nhere are the ways you can support my work:';
+
+  if (process.env.NEXT_PUBLIC_PAYPAL_URL) {
+    donationLinks += `\n- <u><a class="text-light-blue dark:text-dark-blue underline" href="${process.env.NEXT_PUBLIC_PAYPAL_URL}" target="_blank">paypal</a></u>`;
+  }
+
+  if (process.env.NEXT_PUBLIC_PATREON_URL) {
+    donationLinks += `\n- <u><a class="text-light-blue dark:text-dark-blue underline" href="${process.env.NEXT_PUBLIC_PATREON_URL}" target="_blank">patreon</a></u>`;
+  }
+
+  return donationLinks;
 };
 
 // Contact
 export const email = async (args: string[]): Promise<string> => {
-  window.open(`mailto:${envConfig.email}`);
-  return `Opening mailto:${envConfig.email}...`;
+  // 检查环境变量是否存在
+  if (!process.env.NEXT_PUBLIC_EMAIL) {
+    return 'Email not configured in environment variables.';
+  }
+
+  // 使用环境变量中的邮箱
+  window.open(`mailto:${process.env.NEXT_PUBLIC_EMAIL}`);
+  return `Opening mailto:${process.env.NEXT_PUBLIC_EMAIL}...`;
 };
 
 export const github = async (args: string[]): Promise<string> => {
-  window.open(`https://github.com/${envConfig.social.github}/`);
+  // 检查环境变量是否存在
+  if (!process.env.NEXT_PUBLIC_GITHUB_USERNAME) {
+    return 'GitHub username not configured in environment variables.';
+  }
 
+  // 使用环境变量中的用户名
+  window.open(`https://github.com/${process.env.NEXT_PUBLIC_GITHUB_USERNAME}/`);
   return 'Opening github...';
 };
 
@@ -138,7 +171,7 @@ export const echo = async (args: string[]): Promise<string> => {
 };
 
 export const whoami = async (args: string[]): Promise<string> => {
-  return `${envConfig.ps1_username}`;
+  return `${process.env.NEXT_PUBLIC_PS1_USERNAME || 'visitor'}`;
 };
 
 export const ls = async (args: string[]): Promise<string> => {
@@ -179,6 +212,21 @@ export const sudo = async (args?: string[]): Promise<string> => {
   return `Permission denied: with little power comes... no responsibility? `;
 };
 
+
+export const twitter = async (args: string[]): Promise<string> => {
+  // 检查环境变量是否存在
+  if (!process.env.NEXT_PUBLIC_TWITTER_URL) {
+    return 'Twitter profile not configured in environment variables.';
+  }
+
+  // 使用环境变量中的 URL
+  window.open(process.env.NEXT_PUBLIC_TWITTER_URL);
+  return 'Opening Twitter...';
+};
+
+
+
+
 // Banner
 export const banner = (args?: string[]): string => {
   return `
@@ -190,7 +238,7 @@ export const banner = (args?: string[]): string => {
 ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
 
 
-Welcome to ${envConfig.name}'s terminal website!
+Welcome to ${process.env.NEXT_PUBLIC_NAME || 'User'}'s terminal website!
 
 Type 'help' to see the list of available commands.
 Type 'about' to learn more about me.

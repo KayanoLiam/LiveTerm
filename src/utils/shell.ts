@@ -24,12 +24,22 @@ export const shell = async (
 
     // 检查是否是AI聊天命令，需要特殊处理流式输出
     if (args[0] === 'ai' && allCommands['ai-stream']) {
-      // 使用流式版本的AI命令
-      await allCommands['ai-stream'](args.slice(1), setHistory);
+      try {
+        // 使用流式版本的AI命令
+        await allCommands['ai-stream'](args.slice(1), setHistory);
+      } catch (error) {
+        console.error('Error in AI stream command:', error);
+        setHistory(`<span style="color: #fb4934;">Error: AI command failed</span>\n\nDetails: ${error.message || 'Unknown error'}`);
+      }
     } else {
       // 常规命令处理
-      const output = await command(args.slice(1));
-      setHistory(output);
+      try {
+        const output = await command(args.slice(1));
+        setHistory(output);
+      } catch (error) {
+        console.error('Error in command execution:', error);
+        setHistory(`<span style="color: #fb4934;">Error: Command failed</span>\n\nDetails: ${error.message || 'Unknown error'}`);
+      }
     }
   }
 
